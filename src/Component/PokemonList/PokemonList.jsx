@@ -47,7 +47,12 @@ function PokemonList() {
                 <PokemonPrint name={p.name} Image={p.image} key={p.id}/>
               ))}
         </div>
+        
       </div>
+      <div className="button">
+          <button className="prevbtn">Prev</button>
+          <button className="nextbtn">Next</button>
+        </div>
     </>
   );
 }

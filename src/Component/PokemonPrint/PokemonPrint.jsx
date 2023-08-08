@@ -4,7 +4,7 @@ function PokemonPrint({ name, Image }) {
     <>
       <div className="Pokemon-print-wrapper">
         <span>{name}</span>
-        <div>
+        <div className="pokemon-image">
           <img src={Image} />
         </div>
       </div>

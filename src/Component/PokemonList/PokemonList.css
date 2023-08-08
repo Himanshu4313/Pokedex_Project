@@ -4,6 +4,25 @@
     margin: 15px 10px;
 }
 .Loading{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+.PokemonList-wrapper{
+    margin: 5px 118px;
+}
+
+.button{
     text-align: center;
-   
+}
+
+.button button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 6px;
+    cursor: pointer;
+}
+.button button:hover{
+    background-color: beige;
 }
