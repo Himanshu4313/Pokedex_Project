@@ -63,8 +63,8 @@ function PokemonList() {
         <div className="Loading">
           {isLoading
             ? "Loading....."
-            : pokemonList.map((p) => (
-                <PokemonPrint name={p.name} Image={p.image} key={p.id} />
+            : pokemonList.map((p , idex) => (
+                <PokemonPrint name={p.name} Image={p.image} id={p.id} key={idex} />
               ))}
         </div>
       </div>

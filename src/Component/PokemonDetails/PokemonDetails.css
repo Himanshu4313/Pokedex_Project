@@ -1,0 +1,24 @@
+ h1 {
+    margin-top: 30px;
+text-decoration: underline;
+letter-spacing: 4px;
+text-align: center;
+color: black;
+}
+
+.pokemonDetails-container{
+    text-align: center;
+    font-size: 2rem;
+}
+.Image{
+    margin: 30px auto;
+}
+.Image img{
+    width: 250px;
+    height: 316px;
+}
+.type{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
