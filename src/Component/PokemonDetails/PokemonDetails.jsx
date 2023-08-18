@@ -18,7 +18,7 @@ function PokemonDetails() {
     try {
       setPokemonDetailsState({ ...pokemonDetailsState, isLoading: true });
       const responseDetails = await axios.get(pokemonUrl);
-      console.log(responseDetails);
+      console.log(responseDetails.data);
 
       const details = {
         image: responseDetails.data.sprites.other
@@ -27,7 +27,7 @@ function PokemonDetails() {
         name: responseDetails.data.name,
         height: responseDetails.data.height,
         weight: responseDetails.data.weight,
-        types: responseDetails.data.types.map((p) => p.type.name),
+        types: responseDetails.data.types.map((p) => p.type),
       };
       setPokemonDetailsState({
         ...pokemonDetailsState,
@@ -41,12 +41,13 @@ function PokemonDetails() {
       );
     }
   }
+  
 
   // UseEffect
 
   useEffect(() => {
     singlePokemonDetailsDownload();
-  }, []);
+  },[])
   return (
     <>
       <Link to={"/"}>
@@ -76,7 +77,7 @@ function PokemonDetails() {
             Types:{" "}
             {pokemonDetailsState.pokemonDetails.types &&
               pokemonDetailsState.pokemonDetails.types.map((t) => (
-                <div>{t}</div>
+                <div key={t.url}>{t.name}</div>
               ))}
           </div>
         </div>
