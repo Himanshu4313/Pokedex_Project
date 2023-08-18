@@ -1,53 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import "./PokemonDetails.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import usePokemonDetails from "../../hooks/usePokemonDetails";
 function PokemonDetails() {
-  const { id } = useParams();
-  console.log(id);
-  //Advance useState for use
-  const [pokemonDetailsState, setPokemonDetailsState] = useState({
-    pokemonDetails: {},
-    isLoading: true,
-  });
-
-  // URL for pokemon
-  const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
-
-  async function singlePokemonDetailsDownload() {
-    try {
-      setPokemonDetailsState({ ...pokemonDetailsState, isLoading: true });
-      const responseDetails = await axios.get(pokemonUrl);
-      console.log(responseDetails.data);
-
-      const details = {
-        image: responseDetails.data.sprites.other
-          ? responseDetails.data.sprites.other.dream_world.front_default
-          : responseDetails.data.sprites.front_default,
-        name: responseDetails.data.name,
-        height: responseDetails.data.height,
-        weight: responseDetails.data.weight,
-        types: responseDetails.data.types.map((p) => p.type),
-      };
-      setPokemonDetailsState({
-        ...pokemonDetailsState,
-        pokemonDetails: details,
-        isLoading: false,
-      });
-    } catch (error) {
-      console.error(
-        "Something went wrong Please try again or check your Internet",
-        error
-      );
-    }
-  }
-  
-
-  // UseEffect
-
-  useEffect(() => {
-    singlePokemonDetailsDownload();
-  },[])
+  const [pokemonDetailsState] = usePokemonDetails();
   return (
     <>
       <Link to={"/"}>
