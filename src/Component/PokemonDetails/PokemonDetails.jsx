@@ -1,13 +1,17 @@
-import { Link,} from "react-router-dom";
+import { Link, useParams,} from "react-router-dom";
 import "./PokemonDetails.css";
 import usePokemonDetails from "../../hooks/usePokemonDetails";
-function PokemonDetails() {
-  const [pokemonDetailsState] = usePokemonDetails();
+function PokemonDetails({pokemonName}) {
+  const { id } = useParams();
+  console.log(id);
+  const [pokemonDetailsState] = usePokemonDetails(id , pokemonName);
   return (
     <>
+      {id && 
       <Link to={"/"}>
         <h1>Pokedex</h1>
       </Link>
+       }
       {pokemonDetailsState.isLoading ? (
         <h3 className="loading-details">Loading_Details....</h3>
       ) : (

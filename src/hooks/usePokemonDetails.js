@@ -2,19 +2,28 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function usePokemonDetails(){
-    const { id } = useParams();
-    console.log(id);
-    const [pokemonDetailsState, setPokemonDetailsState] = useState({
-        pokemonDetails: {},
-        isLoading: true,
-      });
-      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
+function usePokemonDetails(id, pokemonName) {
+  const [pokemonDetailsState, setPokemonDetailsState] = useState({
+    pokemonDetails: {},
+    isLoading: true,
+  });
 
   async function singlePokemonDetailsDownload() {
     try {
+      let responseDetails;
+      console.log("id=", id, "name=", pokemonName);
+      if (pokemonName) {
+        responseDetails = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+        );
+      } else {
+        responseDetails = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${id}`
+        );
+      }
+
       setPokemonDetailsState({ ...pokemonDetailsState, isLoading: true });
-      const responseDetails = await axios.get(pokemonUrl);
+
       console.log(responseDetails.data);
 
       const details = {
@@ -38,11 +47,11 @@ function usePokemonDetails(){
       );
     }
   }
-   // UseEffect
+  // UseEffect
 
-   useEffect(() => {
+  useEffect(() => {
     singlePokemonDetailsDownload();
-  },[])
+  }, []);
 
   return [pokemonDetailsState];
 }

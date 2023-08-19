@@ -6,5 +6,13 @@ input {
   margin-top: 20px;
 }
 input:focus{
-    border: 2px solid #5e5efa;
+    border: 2px solid #3434f5;
+}
+ 
+@media screen and (max-width: 600px) {
+  input{
+    width: 50vw;
+    padding: 8px;
+    font-size: 11px;
+  }
 }

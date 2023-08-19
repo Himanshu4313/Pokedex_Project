@@ -1,8 +1,10 @@
 import './Search.css';
-function Search(){
+function Search({updateSearchTerm}){
     return (
        <>
-            <input type="text" placeholder="Pokemon Name...." />
+            <input type="text" placeholder="Pokemon Name...."
+                onChange={(e) => updateSearchTerm(e.target.value) }
+             />
        </>
     );
 }
